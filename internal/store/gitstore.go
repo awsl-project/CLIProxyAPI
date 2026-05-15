@@ -15,7 +15,6 @@ import (
 	"github.com/go-git/go-git/v6"
 	"github.com/go-git/go-git/v6/config"
 	"github.com/go-git/go-git/v6/plumbing"
-	gitclient "github.com/go-git/go-git/v6/plumbing/client"
 	"github.com/go-git/go-git/v6/plumbing/object"
 	"github.com/go-git/go-git/v6/plumbing/transport"
 	"github.com/go-git/go-git/v6/plumbing/transport/http"
@@ -122,14 +121,14 @@ func (s *GitTokenStore) EnsureRepository() error {
 	authDir := filepath.Join(repoDir, "auths")
 	configDir := filepath.Join(repoDir, "config")
 	gitDir := filepath.Join(repoDir, ".git")
-	clientOptions := s.gitClientOptions()
+	authMethod := s.gitAuth()
 	var initPaths []string
 	if _, err := os.Stat(gitDir); errors.Is(err, fs.ErrNotExist) {
 		if errMk := os.MkdirAll(repoDir, 0o700); errMk != nil {
 			s.dirLock.Unlock()
 			return fmt.Errorf("git token store: create repo dir: %w", errMk)
 		}
-		cloneOpts := &git.CloneOptions{ClientOptions: clientOptions, URL: s.remote}
+		cloneOpts := &git.CloneOptions{Auth: authMethod, URL: s.remote}
 		if s.branch != "" {
 			cloneOpts.ReferenceName = plumbing.NewBranchReferenceName(s.branch)
 		}
@@ -197,20 +196,20 @@ func (s *GitTokenStore) EnsureRepository() error {
 			return fmt.Errorf("git token store: worktree: %w", errWorktree)
 		}
 		if s.branch != "" {
-			if errCheckout := s.checkoutConfiguredBranch(repo, worktree, clientOptions); errCheckout != nil {
+			if errCheckout := s.checkoutConfiguredBranch(repo, worktree, authMethod); errCheckout != nil {
 				s.dirLock.Unlock()
 				return errCheckout
 			}
 		} else {
 			// When branch is unset, ensure the working tree follows the remote default branch
-			if err := checkoutRemoteDefaultBranch(repo, worktree, clientOptions); err != nil {
+			if err := checkoutRemoteDefaultBranch(repo, worktree, authMethod); err != nil {
 				if !shouldFallbackToCurrentBranch(repo, err) {
 					s.dirLock.Unlock()
 					return fmt.Errorf("git token store: checkout remote default: %w", err)
 				}
 			}
 		}
-		pullOpts := &git.PullOptions{ClientOptions: clientOptions, RemoteName: "origin"}
+		pullOpts := &git.PullOptions{Auth: authMethod, RemoteName: "origin"}
 		if s.branch != "" {
 			pullOpts.ReferenceName = plumbing.NewBranchReferenceName(s.branch)
 		}
@@ -571,7 +570,7 @@ func (s *GitTokenStore) repoDirSnapshot() string {
 	return s.repoDir
 }
 
-func (s *GitTokenStore) gitClientOptions() []gitclient.Option {
+func (s *GitTokenStore) gitAuth() transport.AuthMethod {
 	if s.username == "" && s.password == "" {
 		return nil
 	}
@@ -579,9 +578,7 @@ func (s *GitTokenStore) gitClientOptions() []gitclient.Option {
 	if user == "" {
 		user = "git"
 	}
-	return []gitclient.Option{
-		gitclient.WithHTTPAuth(&http.BasicAuth{Username: user, Password: s.password}),
-	}
+	return &http.BasicAuth{Username: user, Password: s.password}
 }
 
 func (s *GitTokenStore) relativeToRepo(path string) (string, error) {
@@ -607,7 +604,7 @@ func (s *GitTokenStore) relativeToRepo(path string) (string, error) {
 	return rel, nil
 }
 
-func (s *GitTokenStore) checkoutConfiguredBranch(repo *git.Repository, worktree *git.Worktree, clientOptions []gitclient.Option) error {
+func (s *GitTokenStore) checkoutConfiguredBranch(repo *git.Repository, worktree *git.Worktree, authMethod transport.AuthMethod) error {
 	branchRefName := plumbing.NewBranchReferenceName(s.branch)
 	headRef, errHead := repo.Head()
 	switch {
@@ -623,18 +620,18 @@ func (s *GitTokenStore) checkoutConfiguredBranch(repo *git.Repository, worktree 
 		return fmt.Errorf("git token store: checkout branch %s: %w", s.branch, err)
 	} else if !errors.Is(errRef, plumbing.ErrReferenceNotFound) {
 		return fmt.Errorf("git token store: inspect branch %s: %w", s.branch, errRef)
-	} else if err := s.checkoutConfiguredRemoteTrackingBranch(repo, worktree, branchRefName, clientOptions); err != nil {
+	} else if err := s.checkoutConfiguredRemoteTrackingBranch(repo, worktree, branchRefName, authMethod); err != nil {
 		return fmt.Errorf("git token store: checkout branch %s: %w", s.branch, err)
 	}
 
 	return nil
 }
 
-func (s *GitTokenStore) checkoutConfiguredRemoteTrackingBranch(repo *git.Repository, worktree *git.Worktree, branchRefName plumbing.ReferenceName, clientOptions []gitclient.Option) error {
+func (s *GitTokenStore) checkoutConfiguredRemoteTrackingBranch(repo *git.Repository, worktree *git.Worktree, branchRefName plumbing.ReferenceName, authMethod transport.AuthMethod) error {
 	remoteRefName := plumbing.ReferenceName("refs/remotes/origin/" + s.branch)
 	remoteRef, err := repo.Reference(remoteRefName, true)
 	if errors.Is(err, plumbing.ErrReferenceNotFound) {
-		if errSync := syncRemoteReferences(repo, clientOptions); errSync != nil {
+		if errSync := syncRemoteReferences(repo, authMethod); errSync != nil {
 			return fmt.Errorf("sync remote refs: %w", errSync)
 		}
 		remoteRef, err = repo.Reference(remoteRefName, true)
@@ -661,14 +658,8 @@ func (s *GitTokenStore) checkoutConfiguredRemoteTrackingBranch(repo *git.Reposit
 	return nil
 }
 
-func syncRemoteReferences(repo *git.Repository, clientOptions []gitclient.Option) error {
-	fetchOpts := &git.FetchOptions{
-		ClientOptions: clientOptions,
-		RemoteName:    "origin",
-		RefSpecs:      []config.RefSpec{"+refs/heads/*:refs/remotes/origin/*"},
-		Force:         true,
-	}
-	if err := repo.Fetch(fetchOpts); err != nil && !errors.Is(err, git.NoErrAlreadyUpToDate) {
+func syncRemoteReferences(repo *git.Repository, authMethod transport.AuthMethod) error {
+	if err := repo.Fetch(&git.FetchOptions{Auth: authMethod, RemoteName: "origin"}); err != nil && !errors.Is(err, git.NoErrAlreadyUpToDate) {
 		return err
 	}
 	return nil
@@ -676,15 +667,15 @@ func syncRemoteReferences(repo *git.Repository, clientOptions []gitclient.Option
 
 // resolveRemoteDefaultBranch queries the origin remote to determine the remote's default branch
 // (the target of HEAD) and returns the corresponding local branch reference name (e.g. refs/heads/master).
-func resolveRemoteDefaultBranch(repo *git.Repository, clientOptions []gitclient.Option) (resolvedRemoteBranch, error) {
-	if err := syncRemoteReferences(repo, clientOptions); err != nil {
+func resolveRemoteDefaultBranch(repo *git.Repository, authMethod transport.AuthMethod) (resolvedRemoteBranch, error) {
+	if err := syncRemoteReferences(repo, authMethod); err != nil {
 		return resolvedRemoteBranch{}, fmt.Errorf("resolve remote default: sync remote refs: %w", err)
 	}
 	remote, err := repo.Remote("origin")
 	if err != nil {
 		return resolvedRemoteBranch{}, fmt.Errorf("resolve remote default: get remote: %w", err)
 	}
-	refs, err := remote.List(&git.ListOptions{ClientOptions: clientOptions})
+	refs, err := remote.List(&git.ListOptions{Auth: authMethod})
 	if err != nil {
 		if resolved, ok := resolveRemoteDefaultBranchFromLocal(repo); ok {
 			return resolved, nil
@@ -751,8 +742,8 @@ func shouldFallbackToCurrentBranch(repo *git.Repository, err error) bool {
 // checkoutRemoteDefaultBranch ensures the working tree is checked out to the remote's default branch
 // (the branch target of origin/HEAD). If the local branch does not exist it will be created to track
 // the remote branch.
-func checkoutRemoteDefaultBranch(repo *git.Repository, worktree *git.Worktree, clientOptions []gitclient.Option) error {
-	resolved, err := resolveRemoteDefaultBranch(repo, clientOptions)
+func checkoutRemoteDefaultBranch(repo *git.Repository, worktree *git.Worktree, authMethod transport.AuthMethod) error {
+	resolved, err := resolveRemoteDefaultBranch(repo, authMethod)
 	if err != nil {
 		return err
 	}
@@ -863,12 +854,8 @@ func (s *GitTokenStore) commitAndPushLocked(message string, relPaths ...string) 
 	} else if errRewrite := s.rewriteHeadAsSingleCommit(repo, headRef.Name(), commitHash, message, signature); errRewrite != nil {
 		return errRewrite
 	}
-	if errSync := syncRemoteReferences(repo, s.gitClientOptions()); errSync != nil &&
-		!errors.Is(errSync, transport.ErrAuthenticationRequired) &&
-		!errors.Is(errSync, transport.ErrEmptyRemoteRepository) {
-		return fmt.Errorf("git token store: sync refs before push: %w", errSync)
-	}
-	pushOpts := &git.PushOptions{ClientOptions: s.gitClientOptions(), Force: true}
+	s.maybeRunGC(repo)
+	pushOpts := &git.PushOptions{Auth: s.gitAuth(), Force: true}
 	if s.branch != "" {
 		pushOpts.RefSpecs = []config.RefSpec{config.RefSpec("refs/heads/" + s.branch + ":refs/heads/" + s.branch)}
 	} else {
@@ -883,7 +870,6 @@ func (s *GitTokenStore) commitAndPushLocked(message string, relPaths ...string) 
 		}
 		return fmt.Errorf("git token store: push: %w", err)
 	}
-	s.maybeRunGC(repo)
 	return nil
 }
 
