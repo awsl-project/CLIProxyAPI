@@ -13,10 +13,10 @@ import (
 	"math/big"
 	"strings"
 
+	"github.com/awsl-project/CLIProxyAPI/v7/internal/registry"
+	"github.com/awsl-project/CLIProxyAPI/v7/internal/thinking"
+	"github.com/awsl-project/CLIProxyAPI/v7/internal/util"
 	"github.com/google/uuid"
-	"github.com/router-for-me/CLIProxyAPI/v7/internal/registry"
-	"github.com/router-for-me/CLIProxyAPI/v7/internal/thinking"
-	"github.com/router-for-me/CLIProxyAPI/v7/internal/util"
 	"github.com/tidwall/gjson"
 	"github.com/tidwall/sjson"
 )

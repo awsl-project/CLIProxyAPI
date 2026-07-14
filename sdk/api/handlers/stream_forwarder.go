@@ -4,8 +4,8 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/awsl-project/CLIProxyAPI/v7/internal/interfaces"
 	"github.com/gin-gonic/gin"
-	"github.com/router-for-me/CLIProxyAPI/v7/internal/interfaces"
 )
 
 type StreamForwardOptions struct {

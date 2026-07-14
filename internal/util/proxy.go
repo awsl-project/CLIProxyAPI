@@ -6,8 +6,8 @@ package util
 import (
 	"net/http"
 
-	"github.com/router-for-me/CLIProxyAPI/v7/sdk/config"
-	"github.com/router-for-me/CLIProxyAPI/v7/sdk/proxyutil"
+	"github.com/awsl-project/CLIProxyAPI/v7/sdk/config"
+	"github.com/awsl-project/CLIProxyAPI/v7/sdk/proxyutil"
 	log "github.com/sirupsen/logrus"
 )
 

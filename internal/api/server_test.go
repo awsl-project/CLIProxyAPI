@@ -12,17 +12,17 @@ import (
 	"testing"
 	"time"
 
+	managementHandlers "github.com/awsl-project/CLIProxyAPI/v7/internal/api/handlers/management"
+	proxyconfig "github.com/awsl-project/CLIProxyAPI/v7/internal/config"
+	internallogging "github.com/awsl-project/CLIProxyAPI/v7/internal/logging"
+	"github.com/awsl-project/CLIProxyAPI/v7/internal/pluginhost"
+	"github.com/awsl-project/CLIProxyAPI/v7/internal/redisqueue"
+	"github.com/awsl-project/CLIProxyAPI/v7/internal/registry"
+	sdkaccess "github.com/awsl-project/CLIProxyAPI/v7/sdk/access"
+	"github.com/awsl-project/CLIProxyAPI/v7/sdk/cliproxy/auth"
+	coreexecutor "github.com/awsl-project/CLIProxyAPI/v7/sdk/cliproxy/executor"
+	sdkconfig "github.com/awsl-project/CLIProxyAPI/v7/sdk/config"
 	gin "github.com/gin-gonic/gin"
-	managementHandlers "github.com/router-for-me/CLIProxyAPI/v7/internal/api/handlers/management"
-	proxyconfig "github.com/router-for-me/CLIProxyAPI/v7/internal/config"
-	internallogging "github.com/router-for-me/CLIProxyAPI/v7/internal/logging"
-	"github.com/router-for-me/CLIProxyAPI/v7/internal/pluginhost"
-	"github.com/router-for-me/CLIProxyAPI/v7/internal/redisqueue"
-	"github.com/router-for-me/CLIProxyAPI/v7/internal/registry"
-	sdkaccess "github.com/router-for-me/CLIProxyAPI/v7/sdk/access"
-	"github.com/router-for-me/CLIProxyAPI/v7/sdk/cliproxy/auth"
-	coreexecutor "github.com/router-for-me/CLIProxyAPI/v7/sdk/cliproxy/executor"
-	sdkconfig "github.com/router-for-me/CLIProxyAPI/v7/sdk/config"
 )
 
 type codexSearchCaptureExecutor struct {

@@ -7,7 +7,7 @@ import (
 	"net/http"
 	"strings"
 
-	internalpluginstore "github.com/router-for-me/CLIProxyAPI/v7/internal/pluginstore"
+	internalpluginstore "github.com/awsl-project/CLIProxyAPI/v7/internal/pluginstore"
 )
 
 const (

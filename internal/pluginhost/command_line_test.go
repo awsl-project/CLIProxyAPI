@@ -7,10 +7,10 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/router-for-me/CLIProxyAPI/v7/internal/config"
-	sdkAuth "github.com/router-for-me/CLIProxyAPI/v7/sdk/auth"
-	coreauth "github.com/router-for-me/CLIProxyAPI/v7/sdk/cliproxy/auth"
-	"github.com/router-for-me/CLIProxyAPI/v7/sdk/pluginapi"
+	"github.com/awsl-project/CLIProxyAPI/v7/internal/config"
+	sdkAuth "github.com/awsl-project/CLIProxyAPI/v7/sdk/auth"
+	coreauth "github.com/awsl-project/CLIProxyAPI/v7/sdk/cliproxy/auth"
+	"github.com/awsl-project/CLIProxyAPI/v7/sdk/pluginapi"
 )
 
 func TestRegisterCommandLineFlagsSkipsNativeAndUsesPriority(t *testing.T) {

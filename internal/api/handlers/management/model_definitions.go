@@ -4,8 +4,8 @@ import (
 	"net/http"
 	"strings"
 
+	"github.com/awsl-project/CLIProxyAPI/v7/internal/registry"
 	"github.com/gin-gonic/gin"
-	"github.com/router-for-me/CLIProxyAPI/v7/internal/registry"
 )
 
 // GetStaticModelDefinitions returns static model metadata for a given channel.

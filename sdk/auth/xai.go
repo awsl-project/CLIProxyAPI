@@ -6,10 +6,10 @@ import (
 	"strings"
 	"time"
 
-	xaiauth "github.com/router-for-me/CLIProxyAPI/v7/internal/auth/xai"
-	"github.com/router-for-me/CLIProxyAPI/v7/internal/browser"
-	"github.com/router-for-me/CLIProxyAPI/v7/internal/config"
-	coreauth "github.com/router-for-me/CLIProxyAPI/v7/sdk/cliproxy/auth"
+	xaiauth "github.com/awsl-project/CLIProxyAPI/v7/internal/auth/xai"
+	"github.com/awsl-project/CLIProxyAPI/v7/internal/browser"
+	"github.com/awsl-project/CLIProxyAPI/v7/internal/config"
+	coreauth "github.com/awsl-project/CLIProxyAPI/v7/sdk/cliproxy/auth"
 	log "github.com/sirupsen/logrus"
 )
 

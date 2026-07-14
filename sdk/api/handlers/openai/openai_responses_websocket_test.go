@@ -12,15 +12,15 @@ import (
 	"testing"
 	"time"
 
+	"github.com/awsl-project/CLIProxyAPI/v7/internal/interfaces"
+	requestlogging "github.com/awsl-project/CLIProxyAPI/v7/internal/logging"
+	"github.com/awsl-project/CLIProxyAPI/v7/internal/registry"
+	"github.com/awsl-project/CLIProxyAPI/v7/sdk/api/handlers"
+	coreauth "github.com/awsl-project/CLIProxyAPI/v7/sdk/cliproxy/auth"
+	coreexecutor "github.com/awsl-project/CLIProxyAPI/v7/sdk/cliproxy/executor"
+	sdkconfig "github.com/awsl-project/CLIProxyAPI/v7/sdk/config"
 	"github.com/gin-gonic/gin"
 	"github.com/gorilla/websocket"
-	"github.com/router-for-me/CLIProxyAPI/v7/internal/interfaces"
-	requestlogging "github.com/router-for-me/CLIProxyAPI/v7/internal/logging"
-	"github.com/router-for-me/CLIProxyAPI/v7/internal/registry"
-	"github.com/router-for-me/CLIProxyAPI/v7/sdk/api/handlers"
-	coreauth "github.com/router-for-me/CLIProxyAPI/v7/sdk/cliproxy/auth"
-	coreexecutor "github.com/router-for-me/CLIProxyAPI/v7/sdk/cliproxy/executor"
-	sdkconfig "github.com/router-for-me/CLIProxyAPI/v7/sdk/config"
 	"github.com/tidwall/gjson"
 )
 

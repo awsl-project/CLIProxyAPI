@@ -10,10 +10,10 @@ import (
 	"strings"
 	"time"
 
+	"github.com/awsl-project/CLIProxyAPI/v7/internal/config"
+	"github.com/awsl-project/CLIProxyAPI/v7/internal/util"
+	sdkconfig "github.com/awsl-project/CLIProxyAPI/v7/sdk/config"
 	"github.com/gin-gonic/gin"
-	"github.com/router-for-me/CLIProxyAPI/v7/internal/config"
-	"github.com/router-for-me/CLIProxyAPI/v7/internal/util"
-	sdkconfig "github.com/router-for-me/CLIProxyAPI/v7/sdk/config"
 	log "github.com/sirupsen/logrus"
 	"gopkg.in/yaml.v3"
 )

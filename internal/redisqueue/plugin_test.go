@@ -8,9 +8,9 @@ import (
 	"testing"
 	"time"
 
+	internallogging "github.com/awsl-project/CLIProxyAPI/v7/internal/logging"
+	coreusage "github.com/awsl-project/CLIProxyAPI/v7/sdk/cliproxy/usage"
 	"github.com/gin-gonic/gin"
-	internallogging "github.com/router-for-me/CLIProxyAPI/v7/internal/logging"
-	coreusage "github.com/router-for-me/CLIProxyAPI/v7/sdk/cliproxy/usage"
 )
 
 func TestUsageQueuePluginPayloadIncludesStableFieldsAndSuccess(t *testing.T) {

@@ -9,8 +9,8 @@ import (
 	"testing"
 	"time"
 
-	cliproxyauth "github.com/router-for-me/CLIProxyAPI/v7/sdk/cliproxy/auth"
-	sdktranslator "github.com/router-for-me/CLIProxyAPI/v7/sdk/translator"
+	cliproxyauth "github.com/awsl-project/CLIProxyAPI/v7/sdk/cliproxy/auth"
+	sdktranslator "github.com/awsl-project/CLIProxyAPI/v7/sdk/translator"
 )
 
 func TestAntigravityBuildRequest_SanitizesGeminiToolSchema(t *testing.T) {

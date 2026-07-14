@@ -5,8 +5,8 @@ import (
 	"strings"
 	"testing"
 
-	internalcache "github.com/router-for-me/CLIProxyAPI/v7/internal/cache"
-	cliproxyexecutor "github.com/router-for-me/CLIProxyAPI/v7/sdk/cliproxy/executor"
+	internalcache "github.com/awsl-project/CLIProxyAPI/v7/internal/cache"
+	cliproxyexecutor "github.com/awsl-project/CLIProxyAPI/v7/sdk/cliproxy/executor"
 	"github.com/tidwall/gjson"
 )
 

@@ -17,8 +17,8 @@ import (
 	"testing"
 	"time"
 
+	"github.com/awsl-project/CLIProxyAPI/v7/internal/config"
 	"github.com/redis/go-redis/v9"
-	"github.com/router-for-me/CLIProxyAPI/v7/internal/config"
 )
 
 func TestAuthDispatchRequestIncludesCount(t *testing.T) {

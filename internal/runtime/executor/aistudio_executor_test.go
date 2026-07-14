@@ -10,13 +10,13 @@ import (
 	"testing"
 	"time"
 
+	"github.com/awsl-project/CLIProxyAPI/v7/internal/config"
+	"github.com/awsl-project/CLIProxyAPI/v7/internal/wsrelay"
+	cliproxyauth "github.com/awsl-project/CLIProxyAPI/v7/sdk/cliproxy/auth"
+	cliproxyexecutor "github.com/awsl-project/CLIProxyAPI/v7/sdk/cliproxy/executor"
+	"github.com/awsl-project/CLIProxyAPI/v7/sdk/cliproxy/usage"
+	sdktranslator "github.com/awsl-project/CLIProxyAPI/v7/sdk/translator"
 	"github.com/gorilla/websocket"
-	"github.com/router-for-me/CLIProxyAPI/v7/internal/config"
-	"github.com/router-for-me/CLIProxyAPI/v7/internal/wsrelay"
-	cliproxyauth "github.com/router-for-me/CLIProxyAPI/v7/sdk/cliproxy/auth"
-	cliproxyexecutor "github.com/router-for-me/CLIProxyAPI/v7/sdk/cliproxy/executor"
-	"github.com/router-for-me/CLIProxyAPI/v7/sdk/cliproxy/usage"
-	sdktranslator "github.com/router-for-me/CLIProxyAPI/v7/sdk/translator"
 )
 
 func TestAIStudioExecutorExecuteStartsTTFTBeforeRelayWait(t *testing.T) {
