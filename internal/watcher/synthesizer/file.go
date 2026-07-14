@@ -9,10 +9,10 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/router-for-me/CLIProxyAPI/v7/internal/auth/codex"
-	"github.com/router-for-me/CLIProxyAPI/v7/internal/config"
-	coreauth "github.com/router-for-me/CLIProxyAPI/v7/sdk/cliproxy/auth"
-	"github.com/router-for-me/CLIProxyAPI/v7/sdk/pluginapi"
+	"github.com/awsl-project/CLIProxyAPI/v7/internal/auth/codex"
+	"github.com/awsl-project/CLIProxyAPI/v7/internal/config"
+	coreauth "github.com/awsl-project/CLIProxyAPI/v7/sdk/cliproxy/auth"
+	"github.com/awsl-project/CLIProxyAPI/v7/sdk/pluginapi"
 )
 
 // FileSynthesizer generates Auth entries from OAuth JSON files.

@@ -8,9 +8,9 @@ import (
 	"net/http"
 	"strings"
 
-	internalcache "github.com/router-for-me/CLIProxyAPI/v7/internal/cache"
-	"github.com/router-for-me/CLIProxyAPI/v7/internal/runtime/executor/helps"
-	cliproxyexecutor "github.com/router-for-me/CLIProxyAPI/v7/sdk/cliproxy/executor"
+	internalcache "github.com/awsl-project/CLIProxyAPI/v7/internal/cache"
+	"github.com/awsl-project/CLIProxyAPI/v7/internal/runtime/executor/helps"
+	cliproxyexecutor "github.com/awsl-project/CLIProxyAPI/v7/sdk/cliproxy/executor"
 	"github.com/tidwall/gjson"
 	"github.com/tidwall/sjson"
 )

@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"testing"
 
-	"github.com/router-for-me/CLIProxyAPI/v7/internal/registry"
-	"github.com/router-for-me/CLIProxyAPI/v7/sdk/pluginapi"
+	"github.com/awsl-project/CLIProxyAPI/v7/internal/registry"
+	"github.com/awsl-project/CLIProxyAPI/v7/sdk/pluginapi"
 )
 
 func claudeWebSearchRouteBody(t *testing.T) []byte {

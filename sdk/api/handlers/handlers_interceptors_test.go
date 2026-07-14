@@ -10,12 +10,12 @@ import (
 	"testing"
 
 	"github.com/gin-gonic/gin"
-	"github.com/router-for-me/CLIProxyAPI/v7/internal/interfaces"
-	"github.com/router-for-me/CLIProxyAPI/v7/internal/registry"
-	coreauth "github.com/router-for-me/CLIProxyAPI/v7/sdk/cliproxy/auth"
-	coreexecutor "github.com/router-for-me/CLIProxyAPI/v7/sdk/cliproxy/executor"
-	sdkconfig "github.com/router-for-me/CLIProxyAPI/v7/sdk/config"
-	"github.com/router-for-me/CLIProxyAPI/v7/sdk/pluginapi"
+	"github.com/awsl-project/CLIProxyAPI/v7/internal/interfaces"
+	"github.com/awsl-project/CLIProxyAPI/v7/internal/registry"
+	coreauth "github.com/awsl-project/CLIProxyAPI/v7/sdk/cliproxy/auth"
+	coreexecutor "github.com/awsl-project/CLIProxyAPI/v7/sdk/cliproxy/executor"
+	sdkconfig "github.com/awsl-project/CLIProxyAPI/v7/sdk/config"
+	"github.com/awsl-project/CLIProxyAPI/v7/sdk/pluginapi"
 )
 
 type handlerInterceptorTestHost struct {

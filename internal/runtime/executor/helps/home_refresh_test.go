@@ -7,8 +7,8 @@ import (
 	"sync/atomic"
 	"testing"
 
-	"github.com/router-for-me/CLIProxyAPI/v7/internal/config"
-	cliproxyauth "github.com/router-for-me/CLIProxyAPI/v7/sdk/cliproxy/auth"
+	"github.com/awsl-project/CLIProxyAPI/v7/internal/config"
+	cliproxyauth "github.com/awsl-project/CLIProxyAPI/v7/sdk/cliproxy/auth"
 )
 
 func TestStatusFromHomeErrorCodeMapsAuthenticationErrorToUnauthorized(t *testing.T) {

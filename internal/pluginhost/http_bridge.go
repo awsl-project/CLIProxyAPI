@@ -7,10 +7,10 @@ import (
 	"io"
 	"net/http"
 
-	"github.com/router-for-me/CLIProxyAPI/v7/internal/config"
-	"github.com/router-for-me/CLIProxyAPI/v7/internal/runtime/executor/helps"
-	coreauth "github.com/router-for-me/CLIProxyAPI/v7/sdk/cliproxy/auth"
-	"github.com/router-for-me/CLIProxyAPI/v7/sdk/pluginapi"
+	"github.com/awsl-project/CLIProxyAPI/v7/internal/config"
+	"github.com/awsl-project/CLIProxyAPI/v7/internal/runtime/executor/helps"
+	coreauth "github.com/awsl-project/CLIProxyAPI/v7/sdk/cliproxy/auth"
+	"github.com/awsl-project/CLIProxyAPI/v7/sdk/pluginapi"
 	log "github.com/sirupsen/logrus"
 )
 

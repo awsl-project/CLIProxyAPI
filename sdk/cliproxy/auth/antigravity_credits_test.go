@@ -8,10 +8,10 @@ import (
 	"testing"
 	"time"
 
-	internalconfig "github.com/router-for-me/CLIProxyAPI/v7/internal/config"
-	homekv "github.com/router-for-me/CLIProxyAPI/v7/internal/home"
-	"github.com/router-for-me/CLIProxyAPI/v7/internal/registry"
-	cliproxyexecutor "github.com/router-for-me/CLIProxyAPI/v7/sdk/cliproxy/executor"
+	internalconfig "github.com/awsl-project/CLIProxyAPI/v7/internal/config"
+	homekv "github.com/awsl-project/CLIProxyAPI/v7/internal/home"
+	"github.com/awsl-project/CLIProxyAPI/v7/internal/registry"
+	cliproxyexecutor "github.com/awsl-project/CLIProxyAPI/v7/sdk/cliproxy/executor"
 	log "github.com/sirupsen/logrus"
 )
 

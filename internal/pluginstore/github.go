@@ -9,7 +9,7 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/router-for-me/CLIProxyAPI/v7/internal/httpfetch"
+	"github.com/awsl-project/CLIProxyAPI/v7/internal/httpfetch"
 	log "github.com/sirupsen/logrus"
 )
 

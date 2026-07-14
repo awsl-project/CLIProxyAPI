@@ -65,8 +65,8 @@ import (
 	"strings"
 	"unsafe"
 
-	"github.com/router-for-me/CLIProxyAPI/v7/sdk/pluginabi"
-	"github.com/router-for-me/CLIProxyAPI/v7/sdk/pluginapi"
+	"github.com/awsl-project/CLIProxyAPI/v7/sdk/pluginabi"
+	"github.com/awsl-project/CLIProxyAPI/v7/sdk/pluginapi"
 )
 
 const (

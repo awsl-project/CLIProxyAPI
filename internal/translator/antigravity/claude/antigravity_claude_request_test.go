@@ -7,8 +7,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/router-for-me/CLIProxyAPI/v7/internal/cache"
-	"github.com/router-for-me/CLIProxyAPI/v7/internal/registry"
+	"github.com/awsl-project/CLIProxyAPI/v7/internal/cache"
+	"github.com/awsl-project/CLIProxyAPI/v7/internal/registry"
 	log "github.com/sirupsen/logrus"
 	"github.com/sirupsen/logrus/hooks/test"
 	"github.com/tidwall/gjson"

@@ -25,10 +25,10 @@ import (
 	"github.com/klauspost/compress/zstd"
 	log "github.com/sirupsen/logrus"
 
-	"github.com/router-for-me/CLIProxyAPI/v7/internal/buildinfo"
-	"github.com/router-for-me/CLIProxyAPI/v7/internal/home"
-	"github.com/router-for-me/CLIProxyAPI/v7/internal/interfaces"
-	"github.com/router-for-me/CLIProxyAPI/v7/internal/util"
+	"github.com/awsl-project/CLIProxyAPI/v7/internal/buildinfo"
+	"github.com/awsl-project/CLIProxyAPI/v7/internal/home"
+	"github.com/awsl-project/CLIProxyAPI/v7/internal/interfaces"
+	"github.com/awsl-project/CLIProxyAPI/v7/internal/util"
 )
 
 var requestLogID atomic.Uint64

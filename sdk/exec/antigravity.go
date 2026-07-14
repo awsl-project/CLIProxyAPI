@@ -3,11 +3,11 @@
 package exec
 
 import (
-	"github.com/router-for-me/CLIProxyAPI/v6/internal/config"
-	internal "github.com/router-for-me/CLIProxyAPI/v6/internal/runtime/executor"
+	"github.com/awsl-project/CLIProxyAPI/v7/internal/config"
+	internal "github.com/awsl-project/CLIProxyAPI/v7/internal/runtime/executor"
 
 	// Import builtin to register translators (claude -> antigravity, etc.)
-	_ "github.com/router-for-me/CLIProxyAPI/v6/sdk/translator/builtin"
+	_ "github.com/awsl-project/CLIProxyAPI/v7/sdk/translator/builtin"
 )
 
 // AntigravityExecutor is a type alias for the internal AntigravityExecutor.

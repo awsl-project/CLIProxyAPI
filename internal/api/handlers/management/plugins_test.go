@@ -15,9 +15,9 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
-	"github.com/router-for-me/CLIProxyAPI/v7/internal/config"
-	"github.com/router-for-me/CLIProxyAPI/v7/internal/pluginhost"
-	"github.com/router-for-me/CLIProxyAPI/v7/sdk/pluginapi"
+	"github.com/awsl-project/CLIProxyAPI/v7/internal/config"
+	"github.com/awsl-project/CLIProxyAPI/v7/internal/pluginhost"
+	"github.com/awsl-project/CLIProxyAPI/v7/sdk/pluginapi"
 	"gopkg.in/yaml.v3"
 )
 

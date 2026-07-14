@@ -7,7 +7,7 @@ import (
 	"strings"
 	"testing"
 
-	cliproxyexecutor "github.com/router-for-me/CLIProxyAPI/v7/sdk/cliproxy/executor"
+	cliproxyexecutor "github.com/awsl-project/CLIProxyAPI/v7/sdk/cliproxy/executor"
 )
 
 func TestStreamRewriter_RewriteChunk_KimiMessagesDataPrefixWithoutSpace(t *testing.T) {

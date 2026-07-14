@@ -12,12 +12,12 @@ import (
 	"testing"
 
 	"github.com/gin-gonic/gin"
-	internalcache "github.com/router-for-me/CLIProxyAPI/v7/internal/cache"
-	"github.com/router-for-me/CLIProxyAPI/v7/internal/config"
-	_ "github.com/router-for-me/CLIProxyAPI/v7/internal/translator"
-	cliproxyauth "github.com/router-for-me/CLIProxyAPI/v7/sdk/cliproxy/auth"
-	cliproxyexecutor "github.com/router-for-me/CLIProxyAPI/v7/sdk/cliproxy/executor"
-	sdktranslator "github.com/router-for-me/CLIProxyAPI/v7/sdk/translator"
+	internalcache "github.com/awsl-project/CLIProxyAPI/v7/internal/cache"
+	"github.com/awsl-project/CLIProxyAPI/v7/internal/config"
+	_ "github.com/awsl-project/CLIProxyAPI/v7/internal/translator"
+	cliproxyauth "github.com/awsl-project/CLIProxyAPI/v7/sdk/cliproxy/auth"
+	cliproxyexecutor "github.com/awsl-project/CLIProxyAPI/v7/sdk/cliproxy/executor"
+	sdktranslator "github.com/awsl-project/CLIProxyAPI/v7/sdk/translator"
 	"github.com/tidwall/gjson"
 )
 

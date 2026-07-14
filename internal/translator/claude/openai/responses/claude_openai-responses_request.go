@@ -9,11 +9,11 @@ import (
 	"strings"
 
 	"github.com/google/uuid"
-	"github.com/router-for-me/CLIProxyAPI/v7/internal/registry"
-	sigcompat "github.com/router-for-me/CLIProxyAPI/v7/internal/signature"
-	"github.com/router-for-me/CLIProxyAPI/v7/internal/thinking"
-	"github.com/router-for-me/CLIProxyAPI/v7/internal/translator/common"
-	"github.com/router-for-me/CLIProxyAPI/v7/internal/util"
+	"github.com/awsl-project/CLIProxyAPI/v7/internal/registry"
+	sigcompat "github.com/awsl-project/CLIProxyAPI/v7/internal/signature"
+	"github.com/awsl-project/CLIProxyAPI/v7/internal/thinking"
+	"github.com/awsl-project/CLIProxyAPI/v7/internal/translator/common"
+	"github.com/awsl-project/CLIProxyAPI/v7/internal/util"
 	"github.com/tidwall/gjson"
 	"github.com/tidwall/sjson"
 )
