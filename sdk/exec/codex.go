@@ -5,8 +5,8 @@
 package exec
 
 import (
-	"github.com/router-for-me/CLIProxyAPI/v7/internal/config"
-	internal "github.com/router-for-me/CLIProxyAPI/v7/internal/runtime/executor"
+	"github.com/router-for-me/CLIProxyAPI/v8/internal/config"
+	internal "github.com/router-for-me/CLIProxyAPI/v8/internal/runtime/executor"
 )
 
 // CodexExecutor is a type alias for the internal CodexExecutor.
